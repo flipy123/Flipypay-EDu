@@ -1,12 +1,9 @@
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Lightbulb, Heart, Users, Star } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground" data-testid="about-page">
-      <Navbar />
+    <div className="page-transition" data-testid="about-page">
       
       <main>
         <section className="py-20">
@@ -88,8 +85,6 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }

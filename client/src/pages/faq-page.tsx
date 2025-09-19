@@ -1,5 +1,4 @@
 import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export default function FaqPage() {
@@ -152,8 +151,6 @@ export default function FaqPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }

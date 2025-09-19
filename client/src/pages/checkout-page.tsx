@@ -3,8 +3,6 @@ import { useParams } from "wouter";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,6 +29,8 @@ export default function CheckoutPage() {
   const { user } = useAuth();
   const { toast } = useToast();
   const [showPaymentPending, setShowPaymentPending] = useState(false);
+  const [promoCode, setPromoCode] = useState("");
+  const [discount, setDiscount] = useState(0);
 
   const { data: course, isLoading } = useQuery<Course>({
     queryKey: [`/api/courses/${courseId}`],
@@ -54,14 +54,33 @@ export default function CheckoutPage() {
     },
   });
 
+  const applyPromoCode = () => {
+    if (promoCode === "FLIPY50") {
+      setDiscount(50);
+      toast({
+        title: "Promo Code Applied!",
+        description: "You've received 50% discount on this course.",
+      });
+    } else if (promoCode === "") {
+      setDiscount(0);
+    } else {
+      setDiscount(0);
+      toast({
+        title: "Invalid Promo Code",
+        description: "Please check the promo code and try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     if (!course) return;
 
     const formData = new FormData(e.currentTarget);
-    const gst = Math.round(course.price * 0.18);
-    const total = course.price + gst;
+    const discountAmount = Math.round((course.price * discount) / 100);
+    const total = course.price - discountAmount;
 
     const orderData = {
       courseId: course.id,
@@ -85,54 +104,42 @@ export default function CheckoutPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background text-foreground">
-        <Navbar />
-        <div className="flex items-center justify-center py-20">
-          <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-            <p className="mt-4 text-muted-foreground">Loading course details...</p>
-          </div>
+      <div className="page-transition flex items-center justify-center py-20">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          <p className="mt-4 text-muted-foreground">Loading course details...</p>
         </div>
-        <Footer />
       </div>
     );
   }
 
   if (!course) {
     return (
-      <div className="min-h-screen bg-background text-foreground">
-        <Navbar />
-        <div className="flex items-center justify-center py-20">
-          <Alert className="max-w-md">
-            <AlertDescription>Course not found.</AlertDescription>
-          </Alert>
-        </div>
-        <Footer />
+      <div className="page-transition flex items-center justify-center py-20">
+        <Alert className="max-w-md">
+          <AlertDescription>Course not found.</AlertDescription>
+        </Alert>
       </div>
     );
   }
 
   if (showPaymentPending) {
     return (
-      <div className="min-h-screen bg-background text-foreground">
-        <Navbar />
-        <div className="flex items-center justify-center py-20">
-          <Card className="max-w-md text-center">
-            <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CreditCard className="h-8 w-8 text-yellow-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Payment Gateway Integration Pending</h3>
-              <p className="text-muted-foreground mb-6">
-                We're currently working on integrating our payment gateway. Your course enrollment has been recorded and you'll be notified once payment processing is available.
-              </p>
-              <Button onClick={() => setShowPaymentPending(false)}>
-                Understood
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-        <Footer />
+      <div className="page-transition flex items-center justify-center py-20">
+        <Card className="max-w-md text-center">
+          <CardContent className="pt-6">
+            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CreditCard className="h-8 w-8 text-yellow-600" />
+            </div>
+            <h3 className="text-xl font-bold mb-2">Payment Gateway Integration Pending</h3>
+            <p className="text-muted-foreground mb-6">
+              We're currently working on integrating our payment gateway. Your course enrollment has been recorded and you'll be notified once payment processing is available.
+            </p>
+            <Button onClick={() => setShowPaymentPending(false)}>
+              Understood
+            </Button>
+          </CardContent>
+        </Card>
       </div>
     );
   }
@@ -141,8 +148,7 @@ export default function CheckoutPage() {
   const total = course.price + gst;
 
   return (
-    <div className="min-h-screen bg-background text-foreground" data-testid="checkout-page">
-      <Navbar />
+    <div className="page-transition" data-testid="checkout-page">
       
       <main className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -332,8 +338,6 @@ export default function CheckoutPage() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }

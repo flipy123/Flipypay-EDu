@@ -1,5 +1,4 @@
 import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 
 export default function RefundPage() {
   return (
@@ -103,8 +102,6 @@ export default function RefundPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }

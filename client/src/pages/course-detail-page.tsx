@@ -1,7 +1,6 @@
 import { useParams } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -29,7 +28,6 @@ export default function CourseDetailPage() {
             <p className="mt-4 text-muted-foreground">Loading course details...</p>
           </div>
         </div>
-        <Footer />
       </div>
     );
   }
@@ -47,7 +45,6 @@ export default function CourseDetailPage() {
             </Button>
           </div>
         </div>
-        <Footer />
       </div>
     );
   }
@@ -204,8 +201,6 @@ export default function CourseDetailPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }
