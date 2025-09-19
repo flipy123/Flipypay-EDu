@@ -64,6 +64,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedOrder = insertOrderSchema.parse(orderData);
       const order = await storage.createOrder(validatedOrder);
       
+      // Create enrollment after successful order creation
+      await storage.createEnrollment({
+        userId: req.user.id,
+        courseId: validatedOrder.courseId,
+        status: "active"
+      });
+      
       res.json(order);
     } catch (error) {
       console.error("Order creation error:", error);

@@ -33,7 +33,7 @@ export default function CheckoutPage() {
   const [showPaymentPending, setShowPaymentPending] = useState(false);
 
   const { data: course, isLoading } = useQuery<Course>({
-    queryKey: ["/api/courses", courseId],
+    queryKey: [`/api/courses/${courseId}`],
     enabled: !!courseId,
   });
 
@@ -291,7 +291,7 @@ export default function CheckoutPage() {
                       <div className="flex items-center gap-4 text-sm text-muted-foreground mt-1">
                         <div className="flex items-center gap-1">
                           <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                          <span>{(course.rating / 10).toFixed(1)}</span>
+                          <span>{course.rating ? (course.rating / 10).toFixed(1) : 'N/A'}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Clock className="h-3 w-3" />
