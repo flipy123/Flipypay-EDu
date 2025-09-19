@@ -39,7 +39,7 @@ const forgotPasswordSchema = z.object({
 export default function AuthPage() {
   const { user, loginMutation, registerMutation } = useAuth();
   const { toast } = useToast();
-  const [, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
@@ -53,9 +53,13 @@ export default function AuthPage() {
   const [sendingForgotPasswordOtp, setSendingForgotPasswordOtp] = useState(false);
   const [resettingPassword, setResettingPassword] = useState(false);
 
+  // Get redirect URL from query params
+  const searchParams = new URLSearchParams(window.location.search);
+  const redirectTo = searchParams.get('redirect') || '/';
+
   // Redirect if already logged in
   if (user) {
-    setLocation("/");
+    setLocation(redirectTo);
     return null;
   }
 
@@ -70,7 +74,7 @@ export default function AuthPage() {
       });
 
       await loginMutation.mutateAsync(data);
-      setLocation("/");
+      setLocation(redirectTo);
     } catch (error) {
       if (error instanceof z.ZodError) {
         error.errors.forEach((err) => {
@@ -115,7 +119,7 @@ export default function AuthPage() {
         isEmailVerified: true,
       });
       
-      setLocation("/");
+      setLocation(redirectTo);
     } catch (error) {
       if (error instanceof z.ZodError) {
         error.errors.forEach((err) => {
