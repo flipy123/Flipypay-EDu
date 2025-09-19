@@ -347,9 +347,9 @@ export default function AuthPage() {
 
   return (
     <div className="page-transition flex items-center justify-center p-4" data-testid="auth-page">
-      <div className="w-full max-w-6xl relative">
+      <div className="w-full max-w-6xl mt-12 relative">
         {/* Back Button */}
-        <div className="absolute top-0 left-0 mb-6">
+        <div className="absolute top-0 left-0 mb-6 pt-3">
           <Button variant="ghost" size="sm" asChild data-testid="auth-back-button">
             <Link href="/">
               <ArrowLeft className="h-4 w-4 mr-2" />
@@ -362,14 +362,7 @@ export default function AuthPage() {
         {/* Hero Section */}
         <div className="hidden lg:block space-y-6">
           <div className="space-y-4">
-            <div className="flex items-center space-x-3">
-              <img 
-                src="/@assets/icon with white_1758278761666.png" 
-                alt="FlipyEdu Logo" 
-                className="w-10 h-10 object-contain"
-              />
-              <span className="text-2xl font-bold">FlipyEdu</span>
-            </div>
+            
             <h1 className="text-4xl font-bold leading-tight">
               Master Your Skills,<br />
               <span className="text-primary">Build Your Future</span>
