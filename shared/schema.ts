@@ -63,7 +63,6 @@ export const orders = pgTable("orders", {
   userId: varchar("user_id").notNull().references(() => users.id),
   courseId: varchar("course_id").notNull().references(() => courses.id),
   amount: integer("amount").notNull(), // in paisa
-  gst: integer("gst").notNull(), // in paisa
   total: integer("total").notNull(), // in paisa
   status: text("status").notNull().default("pending"), // pending, completed, failed, cancelled
   paymentDetails: jsonb("payment_details"),
