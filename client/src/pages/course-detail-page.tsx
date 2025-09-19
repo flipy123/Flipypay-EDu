@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Star, Clock, Users, BookOpen, Check, ArrowRight } from "lucide-react";
+import { Star, Clock, Users, BookOpen, Check, ArrowRight, ArrowLeft } from "lucide-react";
 import { formatCurrency } from "@/lib/currency";
 import { Link } from "wouter";
 import type { Course } from "@shared/schema";
@@ -56,6 +56,15 @@ export default function CourseDetailPage() {
       <main>
         <section className="py-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Back Button */}
+            <div className="mb-8">
+              <Button variant="ghost" size="sm" asChild data-testid="course-detail-back-button">
+                <Link href="/courses">
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Back to Courses
+                </Link>
+              </Button>
+            </div>
             <div className="grid lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2 space-y-8">
                 {/* Course Header */}

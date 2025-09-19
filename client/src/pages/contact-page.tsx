@@ -8,8 +8,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, ArrowLeft } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
+import { Link } from "wouter";
 
 export default function ContactPage() {
   const { toast } = useToast();
@@ -56,7 +57,18 @@ export default function ContactPage() {
     return (
       <div className="page-transition min-h-screen bg-background text-foreground">
         <Navbar />
-        <div className="flex items-center justify-center py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Back Button */}
+          <div className="mb-8">
+            <Button variant="ghost" size="sm" asChild data-testid="contact-success-back-button">
+              <Link href="/">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Home
+              </Link>
+            </Button>
+          </div>
+        </div>
+        <div className="flex items-center justify-center py-12">
           <Card className="max-w-md text-center">
             <CardContent className="pt-6">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -83,6 +95,16 @@ export default function ContactPage() {
       <main>
         <section className="py-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Back Button */}
+            <div className="mb-8">
+              <Button variant="ghost" size="sm" asChild data-testid="contact-back-button">
+                <Link href="/">
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Back to Home
+                </Link>
+              </Button>
+            </div>
+            
             <div className="text-center mb-16">
               <h1 className="text-5xl font-bold mb-6" data-testid="contact-title">Contact Us</h1>
               <p className="text-xl text-muted-foreground" data-testid="contact-subtitle">

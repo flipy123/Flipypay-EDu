@@ -1,4 +1,7 @@
 import Navbar from "@/components/navbar";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import { Link } from "wouter";
 
 export default function TermsPage() {
   return (
@@ -8,6 +11,16 @@ export default function TermsPage() {
       <main>
         <section className="py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Back Button */}
+            <div className="mb-8">
+              <Button variant="ghost" size="sm" asChild data-testid="terms-back-button">
+                <Link href="/">
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Back to Home
+                </Link>
+              </Button>
+            </div>
+            
             <h1 className="text-4xl font-bold mb-8" data-testid="terms-title">Terms & Conditions</h1>
             <div className="prose prose-invert max-w-none space-y-8">
               <p className="text-muted-foreground mb-6" data-testid="terms-updated">Last updated: January 2024</p>

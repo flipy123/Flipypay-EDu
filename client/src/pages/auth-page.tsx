@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Eye, EyeOff, Mail, Lock, User, Phone } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, User, Phone, ArrowLeft } from "lucide-react";
 import { insertUserSchema } from "@shared/schema";
 import { z } from "zod";
 
@@ -347,7 +347,18 @@ export default function AuthPage() {
 
   return (
     <div className="page-transition flex items-center justify-center p-4" data-testid="auth-page">
-      <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-8 items-center">
+      <div className="w-full max-w-6xl relative">
+        {/* Back Button */}
+        <div className="absolute top-0 left-0 mb-6">
+          <Button variant="ghost" size="sm" asChild data-testid="auth-back-button">
+            <Link href="/">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Home
+            </Link>
+          </Button>
+        </div>
+        
+        <div className="grid lg:grid-cols-2 gap-8 items-center mt-12">
         {/* Hero Section */}
         <div className="hidden lg:block space-y-6">
           <div className="space-y-4">
@@ -646,10 +657,9 @@ export default function AuthPage() {
             </TabsContent>
           </Tabs>
         </div>
-      </div>
-
-      {/* Forgot Password Dialog */}
-      <Dialog open={showForgotPassword} onOpenChange={setShowForgotPassword}>
+        
+        {/* Forgot Password Dialog */}
+        <Dialog open={showForgotPassword} onOpenChange={setShowForgotPassword}>
         <DialogContent className="sm:max-w-md" data-testid="forgot-password-dialog">
           <DialogHeader>
             <DialogTitle>Reset Password</DialogTitle>
@@ -822,7 +832,9 @@ export default function AuthPage() {
             )}
           </div>
         </DialogContent>
-      </Dialog>
+        </Dialog>
+        </div>
+      </div>
     </div>
   );
 }

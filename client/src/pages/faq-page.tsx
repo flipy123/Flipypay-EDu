@@ -1,5 +1,8 @@
 import Navbar from "@/components/navbar";
+import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { ArrowLeft } from "lucide-react";
+import { Link } from "wouter";
 
 export default function FaqPage() {
   return (
@@ -9,6 +12,16 @@ export default function FaqPage() {
       <main>
         <section className="py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Back Button */}
+            <div className="mb-8">
+              <Button variant="ghost" size="sm" asChild data-testid="faq-back-button">
+                <Link href="/">
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Back to Home
+                </Link>
+              </Button>
+            </div>
+            
             <div className="text-center mb-16">
               <h1 className="text-4xl font-bold mb-6" data-testid="faq-title">Frequently Asked Questions</h1>
               <p className="text-xl text-muted-foreground" data-testid="faq-subtitle">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "wouter";
+import { useParams, Link } from "wouter";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Shield, CreditCard, Star, Clock, Users } from "lucide-react";
+import { Shield, CreditCard, Star, Clock, Users, ArrowLeft } from "lucide-react";
 import { formatCurrency } from "@/lib/currency";
 import { apiRequest } from "@/lib/queryClient";
 import type { Course } from "@shared/schema";
@@ -152,6 +152,16 @@ export default function CheckoutPage() {
       
       <main className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Back Button */}
+          <div className="mb-8">
+            <Button variant="ghost" size="sm" asChild data-testid="checkout-back-button">
+              <Link href={`/courses/${courseId}`}>
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Course
+              </Link>
+            </Button>
+          </div>
+          
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold mb-4" data-testid="checkout-title">Checkout</h1>
             <p className="text-muted-foreground">Complete your course enrollment</p>

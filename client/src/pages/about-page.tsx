@@ -1,5 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Lightbulb, Heart, Users, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Lightbulb, Heart, Users, Star, ArrowLeft } from "lucide-react";
+import { Link } from "wouter";
 
 export default function AboutPage() {
   return (
@@ -8,6 +10,16 @@ export default function AboutPage() {
       <main>
         <section className="py-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Back Button */}
+            <div className="mb-8">
+              <Button variant="ghost" size="sm" asChild data-testid="about-back-button">
+                <Link href="/">
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Back to Home
+                </Link>
+              </Button>
+            </div>
+            
             <div className="text-center mb-16">
               <h1 className="text-5xl font-bold mb-6" data-testid="about-title">About EduPlatform</h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto" data-testid="about-subtitle">
