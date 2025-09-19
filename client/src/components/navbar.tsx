@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Menu, X, User, LogOut } from "lucide-react";
-import logoUrl from "/@assets/icon with white_1758278761666.png";
+import logoUrl from "@assets/icon with white_1758278761666.png";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
