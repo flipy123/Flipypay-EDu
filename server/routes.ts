@@ -150,19 +150,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
         body: JSON.stringify({
           sender: { email: senderEmail },
           to: [{ email }],
-          subject: "EduPlatform - Email Verification OTP",
+          subject: "FlipyEdu - Email Verification OTP",
           htmlContent: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #000000; color: #ffffff; padding: 20px;">
               <div style="text-align: center; margin-bottom: 20px;">
                 <div style="width: 40px; height: 40px; background: #62bf00; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 10px;">
                   <span style="color: #000000; font-weight: bold; font-size: 24px;">E</span>
                 </div>
-                <h1 style="color: #62bf00; margin: 0;">EduPlatform</h1>
+                <h1 style="color: #62bf00; margin: 0;">FlipyEdu</h1>
               </div>
               
               <h2 style="color: #ffffff; text-align: center;">Email Verification</h2>
               
-              <p style="color: #ffffff; font-size: 16px;">Thank you for signing up with EduPlatform!</p>
+              <p style="color: #ffffff; font-size: 16px;">Thank you for signing up with FlipyEdu!</p>
               
               <p style="color: #ffffff; font-size: 16px;">Your verification code is:</p>
               
@@ -175,7 +175,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
               <p style="color: #ffffff; font-size: 14px;">If you didn't request this verification, please ignore this email.</p>
               
               <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #333;">
-                <p style="color: #888888; font-size: 12px;">Best regards,<br>EduPlatform Team</p>
+                <p style="color: #888888; font-size: 12px;">Best regards,<br>FlipyEdu Team</p>
               </div>
             </div>
           `,
@@ -213,6 +213,145 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("OTP verification error:", error);
       res.status(500).json({ error: "Failed to verify OTP" });
+    }
+  });
+
+  // Forgot Password - Send OTP
+  app.post("/api/forgot-password", async (req, res) => {
+    const { email } = req.body;
+    
+    if (!email) {
+      return res.status(400).json({ error: "Email is required" });
+    }
+
+    try {
+      // Check if user exists
+      const user = await storage.getUserByEmail(email);
+      if (!user) {
+        return res.status(404).json({ error: "User not found with this email address" });
+      }
+
+      // Generate 6-digit OTP
+      const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+      const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+
+      // Store OTP in database
+      await storage.createOtp({
+        email,
+        otp: otpCode,
+        expiresAt,
+      });
+
+      // Send OTP via Brevo API
+      const brevoApiKey = process.env.BREVO_API_KEY || "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";
+      const senderEmail = process.env.BREVO_SENDER || "noreply@flipypay.com";
+
+      const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+        method: "POST",
+        headers: {
+          "accept": "application/json",
+          "api-key": brevoApiKey,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          sender: { email: senderEmail },
+          to: [{ email }],
+          subject: "FlipyEdu - Password Reset OTP",
+          htmlContent: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #000000; color: #ffffff; padding: 20px;">
+              <div style="text-align: center; margin-bottom: 20px;">
+                <div style="width: 40px; height: 40px; background: #62bf00; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+                  <span style="color: #000000; font-weight: bold; font-size: 24px;">F</span>
+                </div>
+                <h1 style="color: #62bf00; margin: 0;">FlipyEdu</h1>
+              </div>
+              
+              <h2 style="color: #ffffff; text-align: center;">Password Reset</h2>
+              
+              <p style="color: #ffffff; font-size: 16px;">You requested to reset your password for your FlipyEdu account.</p>
+              
+              <p style="color: #ffffff; font-size: 16px;">Your password reset code is:</p>
+              
+              <div style="background: #62bf00; color: #000000; padding: 20px; text-align: center; font-size: 32px; font-weight: bold; margin: 20px 0; border-radius: 8px; letter-spacing: 4px;">
+                ${otpCode}
+              </div>
+              
+              <p style="color: #ffffff; font-size: 14px;">This code will expire in 10 minutes.</p>
+              
+              <p style="color: #ffffff; font-size: 14px;">If you didn't request this password reset, please ignore this email.</p>
+              
+              <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #333;">
+                <p style="color: #888888; font-size: 12px;">Best regards,<br>FlipyEdu Team</p>
+              </div>
+            </div>
+          `,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send password reset email");
+      }
+
+      res.json({ success: true, message: "Password reset OTP sent successfully" });
+    } catch (error) {
+      console.error("Forgot password error:", error);
+      res.status(500).json({ error: "Failed to send password reset OTP" });
+    }
+  });
+
+  // Verify Reset OTP
+  app.post("/api/verify-reset-otp", async (req, res) => {
+    const { email, otp } = req.body;
+    
+    if (!email || !otp) {
+      return res.status(400).json({ error: "Email and OTP are required" });
+    }
+
+    try {
+      const validOtp = await storage.getValidOtp(email, otp);
+      
+      if (!validOtp) {
+        return res.status(400).json({ error: "Invalid or expired OTP" });
+      }
+
+      // Don't mark as used yet - we'll do that when password is actually reset
+      res.json({ success: true, message: "OTP verified successfully" });
+    } catch (error) {
+      console.error("OTP verification error:", error);
+      res.status(500).json({ error: "Failed to verify OTP" });
+    }
+  });
+
+  // Reset Password
+  app.post("/api/reset-password", async (req, res) => {
+    const { email, otp, newPassword } = req.body;
+    
+    if (!email || !otp || !newPassword) {
+      return res.status(400).json({ error: "Email, OTP, and new password are required" });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({ error: "Password must be at least 6 characters long" });
+    }
+
+    try {
+      // Verify OTP one more time
+      const validOtp = await storage.getValidOtp(email, otp);
+      
+      if (!validOtp) {
+        return res.status(400).json({ error: "Invalid or expired OTP" });
+      }
+
+      // Reset password
+      await storage.resetUserPassword(email, newPassword);
+      
+      // Mark OTP as used
+      await storage.markOtpAsUsed(validOtp.id);
+      
+      res.json({ success: true, message: "Password reset successfully" });
+    } catch (error) {
+      console.error("Password reset error:", error);
+      res.status(500).json({ error: "Failed to reset password" });
     }
   });
 

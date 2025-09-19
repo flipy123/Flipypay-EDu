@@ -16,6 +16,7 @@ export interface IStorage {
   getUserByEmail(email: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
   updateUser(id: string, updates: Partial<InsertUser>): Promise<User | undefined>;
+  resetUserPassword(email: string, newPassword: string): Promise<void>;
 
   // OTPs
   createOtp(otp: InsertOtp): Promise<Otp>;
@@ -82,6 +83,16 @@ export class DatabaseStorage implements IStorage {
       .where(eq(users.id, id))
       .returning();
     return user || undefined;
+  }
+
+  async resetUserPassword(email: string, newPassword: string): Promise<void> {
+    const bcrypt = require('bcrypt');
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    
+    await db
+      .update(users)
+      .set({ password: hashedPassword })
+      .where(eq(users.email, email));
   }
 
   // OTPs

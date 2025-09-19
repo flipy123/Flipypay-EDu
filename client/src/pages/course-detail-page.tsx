@@ -15,7 +15,7 @@ export default function CourseDetailPage() {
   const { id } = useParams();
 
   const { data: course, isLoading, error } = useQuery<Course>({
-    queryKey: ["/api/courses", id],
+    queryKey: [`/api/courses/${id}`],
     enabled: !!id,
   });
 
@@ -78,7 +78,7 @@ export default function CourseDetailPage() {
                       <div className="flex items-center gap-4 text-sm text-muted-foreground">
                         <div className="flex items-center gap-1" data-testid="course-rating">
                           <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                          <span className="font-semibold">{(course.rating / 10).toFixed(1)}</span>
+                          <span className="font-semibold">{((course.rating || 0) / 10).toFixed(1)}</span>
                           <span>({course.studentsCount?.toLocaleString()} students)</span>
                         </div>
                         <div className="flex items-center gap-1" data-testid="course-duration">

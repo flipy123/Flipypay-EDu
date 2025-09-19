@@ -9,10 +9,12 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-3 mb-6" data-testid="footer-logo">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">E</span>
-              </div>
-              <span className="text-xl font-bold">EduPlatform</span>
+              <img 
+                src="/@assets/icon with white_1758278761666.png" 
+                alt="FlipyEdu Logo" 
+                className="w-8 h-8 object-contain"
+              />
+              <span className="text-xl font-bold">FlipyEdu</span>
             </div>
             <p className="text-muted-foreground mb-6" data-testid="footer-description">
               Empowering learners worldwide with quality education and professional development opportunities.
@@ -122,7 +124,7 @@ export default function Footer() {
         <div className="border-t border-border mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm" data-testid="footer-copyright">
-              © 2024 EduPlatform. All rights reserved.
+              © 2024 FlipyEdu. All rights reserved.
             </p>
             <p className="text-muted-foreground text-sm mt-4 md:mt-0" data-testid="footer-made-in-india">
               Made with ❤️ in India

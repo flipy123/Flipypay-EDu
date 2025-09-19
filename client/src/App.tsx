@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/hooks/use-auth";
 import { Notification } from "@/components/ui/notification";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 import NotFound from "@/pages/not-found";
 import HomePage from "@/pages/home-page";
 import AboutPage from "@/pages/about-page";
@@ -41,9 +43,15 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <TooltipProvider>
+          <div className="min-h-screen bg-background text-foreground">
+            <Navbar />
+            <main className="min-h-[calc(100vh-200px)]">
+              <Router />
+            </main>
+            <Footer />
+          </div>
           <Toaster />
           <Notification />
-          <Router />
         </TooltipProvider>
       </AuthProvider>
     </QueryClientProvider>

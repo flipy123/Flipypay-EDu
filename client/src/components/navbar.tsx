@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Menu, X, User, LogOut } from "lucide-react";
+import logoUrl from "/@assets/icon with white_1758278761666.png";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -38,10 +39,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity" data-testid="navbar-logo">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">E</span>
-            </div>
-            <span className="text-xl font-bold text-foreground">EduPlatform</span>
+            <img 
+              src={logoUrl} 
+              alt="FlipyEdu Logo" 
+              className="w-8 h-8 object-contain"
+            />
+            <span className="text-xl font-bold text-foreground">FlipyEdu</span>
           </Link>
 
           {/* Desktop Navigation */}

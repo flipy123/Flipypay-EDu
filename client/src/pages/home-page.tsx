@@ -5,8 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { GraduationCap, Clock, Award, Users, Star, ArrowRight, Play, BookOpen, Target } from "lucide-react";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 import CourseCarousel from "@/components/course-carousel";
 import { formatCurrency } from "@/lib/currency";
 import { Link } from "wouter";
@@ -20,10 +18,7 @@ export default function HomePage() {
   const featuredCourses = courses.slice(0, 8);
 
   return (
-    <div className="min-h-screen bg-background text-foreground" data-testid="home-page">
-      <Navbar />
-      
-      <main>
+    <div data-testid="home-page">
         {/* Hero Section */}
         <section className="relative py-20 lg:py-32 overflow-hidden" data-testid="hero-section">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -185,9 +180,6 @@ export default function HomePage() {
             </Accordion>
           </div>
         </section>
-      </main>
-
-      <Footer />
     </div>
   );
 }

@@ -134,7 +134,7 @@ export default function CourseCarousel({ courses }: CourseCarouselProps) {
                 <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
                   <div className="flex items-center gap-1" data-testid={`carousel-course-rating-${index}`}>
                     <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    <span>{(course.rating / 10).toFixed(1)}</span>
+                    <span>{((course.rating || 0) / 10).toFixed(1)}</span>
                   </div>
                   <div className="flex items-center gap-1" data-testid={`carousel-course-duration-${index}`}>
                     <Clock className="h-4 w-4" />
@@ -170,12 +170,6 @@ export default function CourseCarousel({ courses }: CourseCarouselProps) {
         ))}
       </div>
 
-      {/* Custom scrollbar styles */}
-      <style jsx>{`
-        .carousel-container::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </div>
   );
 }

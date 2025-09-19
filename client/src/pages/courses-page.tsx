@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -24,10 +22,7 @@ export default function CoursesPage() {
     : courses.filter(course => course.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-background text-foreground" data-testid="courses-page">
-      <Navbar />
-      
-      <main>
+    <div data-testid="courses-page">
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
@@ -88,7 +83,7 @@ export default function CoursesPage() {
                         <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
                           <div className="flex items-center gap-1" data-testid={`course-rating-${course.id}`}>
                             <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                            <span>{(course.rating / 10).toFixed(1)}</span>
+                            <span>{((course.rating || 0) / 10).toFixed(1)}</span>
                           </div>
                           <div className="flex items-center gap-1" data-testid={`course-duration-${course.id}`}>
                             <Clock className="h-4 w-4" />
@@ -146,9 +141,6 @@ export default function CoursesPage() {
             )}
           </div>
         </section>
-      </main>
-
-      <Footer />
     </div>
   );
 }
