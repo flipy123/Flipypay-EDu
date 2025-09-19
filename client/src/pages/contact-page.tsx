@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
-import Navbar from "@/components/navbar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram, ArrowLeft } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowLeft } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { Link } from "wouter";
 
@@ -28,7 +27,7 @@ export default function ContactPage() {
         description: "Thank you for your message! We'll get back to you soon.",
       });
     },
-    onError: (error: Error) => {
+    onError: () => {
       toast({
         title: "Error",
         description: "Failed to send message. Please try again.",
@@ -40,7 +39,7 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    
+
     const contactData = {
       firstName: formData.get("firstName"),
       lastName: formData.get("lastName"),
@@ -56,7 +55,6 @@ export default function ContactPage() {
   if (isSubmitted) {
     return (
       <div className="page-transition min-h-screen bg-background text-foreground">
-        <Navbar />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Back Button */}
           <div className="mb-8">
@@ -90,8 +88,6 @@ export default function ContactPage() {
 
   return (
     <div className="page-transition min-h-screen bg-background text-foreground" data-testid="contact-page">
-      <Navbar />
-      
       <main>
         <section className="py-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -104,7 +100,7 @@ export default function ContactPage() {
                 </Link>
               </Button>
             </div>
-            
+
             <div className="text-center mb-16">
               <h1 className="text-5xl font-bold mb-6" data-testid="contact-title">Contact Us</h1>
               <p className="text-xl text-muted-foreground" data-testid="contact-subtitle">
@@ -138,7 +134,7 @@ export default function ContactPage() {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
                     <Input
@@ -150,7 +146,7 @@ export default function ContactPage() {
                       data-testid="contact-email-input"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone Number</Label>
                     <Input
@@ -161,7 +157,7 @@ export default function ContactPage() {
                       data-testid="contact-phone-input"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="subject">Subject</Label>
                     <Select name="subject" required>
@@ -177,7 +173,7 @@ export default function ContactPage() {
                       </SelectContent>
                     </Select>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="message">Message</Label>
                     <Textarea
@@ -189,7 +185,7 @@ export default function ContactPage() {
                       data-testid="contact-message-input"
                     />
                   </div>
-                  
+
                   <Button 
                     type="submit" 
                     className="w-full" 
@@ -215,7 +211,7 @@ export default function ContactPage() {
                       <p className="text-muted-foreground">sales@eduplatform.com</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start space-x-4" data-testid="contact-phone-info">
                     <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
                       <Phone className="h-6 w-6 text-primary-foreground" />
@@ -226,7 +222,7 @@ export default function ContactPage() {
                       <p className="text-muted-foreground">Mon-Fri 9AM-6PM IST</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start space-x-4" data-testid="contact-address-info">
                     <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
                       <MapPin className="h-6 w-6 text-primary-foreground" />
@@ -243,23 +239,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="mt-8">
-                  <h3 className="font-semibold mb-4" data-testid="follow-us-title">Follow Us</h3>
-                  <div className="flex space-x-4" data-testid="social-links">
-                    <a href="#" className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center hover:bg-primary/90 transition-colors" data-testid="facebook-link">
-                      <Facebook className="h-5 w-5 text-primary-foreground" />
-                    </a>
-                    <a href="#" className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center hover:bg-primary/90 transition-colors" data-testid="twitter-link">
-                      <Twitter className="h-5 w-5 text-primary-foreground" />
-                    </a>
-                    <a href="#" className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center hover:bg-primary/90 transition-colors" data-testid="linkedin-link">
-                      <Linkedin className="h-5 w-5 text-primary-foreground" />
-                    </a>
-                    <a href="#" className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center hover:bg-primary/90 transition-colors" data-testid="instagram-link">
-                      <Instagram className="h-5 w-5 text-primary-foreground" />
-                    </a>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
