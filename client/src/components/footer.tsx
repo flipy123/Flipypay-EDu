@@ -10,7 +10,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center space-x-3 mb-6" data-testid="footer-logo">
               <img 
-                src="/favicon.png" 
+                src="/@assets/icon with white_1758278761666.png" 
                 alt="FlipyEdu Logo" 
                 className="w-8 h-8 object-contain"
               />
