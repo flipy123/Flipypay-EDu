@@ -1,0 +1,43 @@
+Create an education course-selling website. Use a black background (#000000) and white text throughout and #62bf00 . Add all basic site elements: navigation bar with logo, a login button, sections, footer, and FAQ.
+
+Pages : (buttons add in nav bar and footer also) 
+	•	Home
+	•	About Us
+	•	Courses
+	•	Contact Us
+
+Home page:
+	•	Add some cotton/cartoon-style education images (education-related visuals).
+	•	Add an “About Us — Our Mission” section with detailed content.
+	•	Add a “Our Courses” section that links to the full course page — each course heading should have an arrow or “see all” link that goes to the course page.
+	•	Show 8 different course cards in a horizontally auto-scrolling carousel. Each course card should include a small image and a short description (examples: “Python”, “Data Science”, “AI”, “Finance-related courses”, etc.).
+	•	Each course card should show an “Enroll” button.
+
+Enroll flow:
+	•	If the user clicks “Enroll” and is not logged in, open the Login page.
+	•	Login page must support:
+	•	Email login
+	•	Password
+	•	“Forgot password” link
+	•	Sign-up option
+	•	For Sign-up: require email OTP verification — add a “Send OTP” button and an OTP entry placeholder. And user type ( distributor , retailer, other) 
+	•	
+
+If the user is already logged in:
+	•	Clicking “Enroll” should open a checkout page.
+	•	The checkout page should auto-fill basic customer details (name, email, address,) and ask the phone number. from the logged-in user’s profile.
+	•	When the user clicks the payment button, show a popup that says “Payment gateway integration pending” (payment gateway integration left for later).
+
+Course pages:
+	•	The same course content shown in the homepage’s course section must also be present on the corresponding course page.
+	•	Include cartoon images and course images.
+
+Site legal & support pages:
+	•	Terms & Conditions
+	•	Refund Policy
+	•	FAQs
+	•	Other business details required
+
+Other notes:
+	•	Add images of cartoons and other friendly visuals.
+	•	For email OTP, you want to integrate an email API (you wrote “breave api”) — I will use Brevo (formerly Sendinblue) for transactional emails and OTPs by default and create the required database structure to store users and OTPs. for your refrence i am giving you other site screenshots.  Note: this site is used in india so currencies and addresse format mobiles number following in Indian format. And for your reference i am send you same sample screen shots, and logo png also add it. 
