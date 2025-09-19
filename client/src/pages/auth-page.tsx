@@ -346,7 +346,7 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="flex items-center justify-center p-4" data-testid="auth-page">
+    <div className="page-transition flex items-center justify-center p-4" data-testid="auth-page">
       <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-8 items-center">
         {/* Hero Section */}
         <div className="hidden lg:block space-y-6">

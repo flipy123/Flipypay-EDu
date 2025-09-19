@@ -54,7 +54,7 @@ export default function ContactPage() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="page-transition min-h-screen bg-background text-foreground">
         <Navbar />
         <div className="flex items-center justify-center py-20">
           <Card className="max-w-md text-center">
@@ -77,7 +77,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground" data-testid="contact-page">
+    <div className="page-transition min-h-screen bg-background text-foreground" data-testid="contact-page">
       <Navbar />
       
       <main>

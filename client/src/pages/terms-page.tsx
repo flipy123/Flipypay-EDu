@@ -2,7 +2,7 @@ import Navbar from "@/components/navbar";
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground" data-testid="terms-page">
+    <div className="page-transition min-h-screen bg-background text-foreground" data-testid="terms-page">
       <Navbar />
       
       <main>

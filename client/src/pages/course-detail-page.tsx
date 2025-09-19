@@ -20,7 +20,7 @@ export default function CourseDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="page-transition min-h-screen bg-background text-foreground">
         <Navbar />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
@@ -34,7 +34,7 @@ export default function CourseDetailPage() {
 
   if (error || !course) {
     return (
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="page-transition min-h-screen bg-background text-foreground">
         <Navbar />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
@@ -50,7 +50,7 @@ export default function CourseDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground" data-testid="course-detail-page">
+    <div className="page-transition min-h-screen bg-background text-foreground" data-testid="course-detail-page">
       <Navbar />
       
       <main>

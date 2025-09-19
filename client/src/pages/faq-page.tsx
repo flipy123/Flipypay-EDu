@@ -3,7 +3,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 export default function FaqPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground" data-testid="faq-page">
+    <div className="page-transition min-h-screen bg-background text-foreground" data-testid="faq-page">
       <Navbar />
       
       <main>

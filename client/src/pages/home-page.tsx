@@ -18,7 +18,7 @@ export default function HomePage() {
   const featuredCourses = courses.slice(0, 8);
 
   return (
-    <div data-testid="home-page">
+    <div className="page-transition" data-testid="home-page">
         {/* Hero Section */}
         <section className="relative py-20 lg:py-32 overflow-hidden" data-testid="hero-section">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

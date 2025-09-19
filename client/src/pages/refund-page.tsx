@@ -2,7 +2,7 @@ import Navbar from "@/components/navbar";
 
 export default function RefundPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground" data-testid="refund-page">
+    <div className="page-transition min-h-screen bg-background text-foreground" data-testid="refund-page">
       <Navbar />
       
       <main>
