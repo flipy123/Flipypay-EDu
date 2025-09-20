@@ -1,5 +1,4 @@
 import { Link } from "wouter";
-import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -10,7 +9,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center space-x-3 mb-6" data-testid="footer-logo">
               <img 
-                src="/@assets/icon with white_1758278761666.png" 
+                src="/favicon.png"   // ✅ public folder icon
                 alt="FlipyEdu Logo" 
                 className="w-8 h-8 object-contain"
               />
@@ -19,20 +18,6 @@ export default function Footer() {
             <p className="text-muted-foreground mb-6" data-testid="footer-description">
               Empowering learners worldwide with quality education and professional development opportunities.
             </p>
-            <div className="flex space-x-4" data-testid="footer-social-links">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-facebook-link">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-twitter-link">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-linkedin-link">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-instagram-link">
-                <Instagram className="h-5 w-5" />
-              </a>
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -41,6 +26,7 @@ export default function Footer() {
             <div className="space-y-3">
               <Link 
                 href="/" 
+                onClick={() => window.scrollTo(0, 0)}
                 className="block text-muted-foreground hover:text-primary transition-colors"
                 data-testid="footer-home-link"
               >
@@ -48,6 +34,7 @@ export default function Footer() {
               </Link>
               <Link 
                 href="/about" 
+                onClick={() => window.scrollTo(0, 0)}
                 className="block text-muted-foreground hover:text-primary transition-colors"
                 data-testid="footer-about-link"
               >
@@ -55,6 +42,7 @@ export default function Footer() {
               </Link>
               <Link 
                 href="/courses" 
+                onClick={() => window.scrollTo(0, 0)}
                 className="block text-muted-foreground hover:text-primary transition-colors"
                 data-testid="footer-courses-link"
               >
@@ -62,6 +50,7 @@ export default function Footer() {
               </Link>
               <Link 
                 href="/contact" 
+                onClick={() => window.scrollTo(0, 0)}
                 className="block text-muted-foreground hover:text-primary transition-colors"
                 data-testid="footer-contact-link"
               >
@@ -74,16 +63,16 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-6" data-testid="footer-courses-title">Popular Courses</h3>
             <div className="space-y-3">
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors" data-testid="footer-python-link">
+              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">
                 Python Programming
               </a>
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors" data-testid="footer-data-science-link">
+              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">
                 Data Science
               </a>
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors" data-testid="footer-web-dev-link">
+              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">
                 Web Development
               </a>
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors" data-testid="footer-digital-marketing-link">
+              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">
                 Digital Marketing
               </a>
             </div>
@@ -95,6 +84,7 @@ export default function Footer() {
             <div className="space-y-3">
               <Link 
                 href="/terms" 
+                onClick={() => window.scrollTo(0, 0)}
                 className="block text-muted-foreground hover:text-primary transition-colors"
                 data-testid="footer-terms-link"
               >
@@ -102,6 +92,7 @@ export default function Footer() {
               </Link>
               <Link 
                 href="/refund" 
+                onClick={() => window.scrollTo(0, 0)}
                 className="block text-muted-foreground hover:text-primary transition-colors"
                 data-testid="footer-refund-link"
               >
@@ -109,14 +100,13 @@ export default function Footer() {
               </Link>
               <Link 
                 href="/faq" 
+                onClick={() => window.scrollTo(0, 0)}
                 className="block text-muted-foreground hover:text-primary transition-colors"
                 data-testid="footer-faq-link"
               >
                 FAQ
               </Link>
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors" data-testid="footer-privacy-link">
-                Privacy Policy
-              </a>
+              
             </div>
           </div>
         </div>
