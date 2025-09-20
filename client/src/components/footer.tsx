@@ -5,11 +5,12 @@ export default function Footer() {
     <footer className="bg-card border-t border-border mt-20" data-testid="footer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-3 mb-6" data-testid="footer-logo">
               <img 
-                src="/favicon.png"   // ✅ public folder icon
+                src="/favicon.png"   // ✅ new logo from public folder
                 alt="FlipyEdu Logo" 
                 className="w-8 h-8 object-contain"
               />
@@ -63,18 +64,34 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-6" data-testid="footer-courses-title">Popular Courses</h3>
             <div className="space-y-3">
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">
+              <Link 
+                href="/courses?type=python"
+                onClick={() => window.scrollTo(0, 0)}
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
                 Python Programming
-              </a>
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">
+              </Link>
+              <Link 
+                href="/courses?type=data-science"
+                onClick={() => window.scrollTo(0, 0)}
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
                 Data Science
-              </a>
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">
+              </Link>
+              <Link 
+                href="/courses?type=web-dev"
+                onClick={() => window.scrollTo(0, 0)}
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
                 Web Development
-              </a>
-              <a href="#" className="block text-muted-foreground hover:text-primary transition-colors">
+              </Link>
+              <Link 
+                href="/courses?type=digital-marketing"
+                onClick={() => window.scrollTo(0, 0)}
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
                 Digital Marketing
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -114,7 +131,7 @@ export default function Footer() {
         <div className="border-t border-border mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm" data-testid="footer-copyright">
-              © 2024 FlipyEdu. All rights reserved.
+              © 2025 FlipyEdu. All rights reserved.
             </p>
             <p className="text-muted-foreground text-sm mt-4 md:mt-0" data-testid="footer-made-in-india">
               Made with ❤️ in India

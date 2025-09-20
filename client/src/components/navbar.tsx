@@ -27,10 +27,15 @@ export default function Navbar() {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+    window.scrollTo(0, 0); // ✅ mobile menu close ayyaka top ki vellipotundi
   };
 
   const isActive = (path: string) => {
     return location === path;
+  };
+
+  const handleNavClick = () => {
+    window.scrollTo(0, 0); // ✅ desktop navigation kosam scroll-to-top
   };
 
   return (
@@ -38,7 +43,12 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity" data-testid="navbar-logo">
+          <Link 
+            href="/" 
+            onClick={handleNavClick}
+            className="flex items-center space-x-3 hover:opacity-80 transition-opacity" 
+            data-testid="navbar-logo"
+          >
             <img 
               src={logoUrl} 
               alt="FlipyEdu Logo" 
@@ -51,6 +61,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             <Link 
               href="/" 
+              onClick={handleNavClick}
               className={`transition-colors ${isActive("/") ? "text-primary" : "text-foreground hover:text-primary"}`}
               data-testid="navbar-home-link"
             >
@@ -58,6 +69,7 @@ export default function Navbar() {
             </Link>
             <Link 
               href="/about" 
+              onClick={handleNavClick}
               className={`transition-colors ${isActive("/about") ? "text-primary" : "text-foreground hover:text-primary"}`}
               data-testid="navbar-about-link"
             >
@@ -65,6 +77,7 @@ export default function Navbar() {
             </Link>
             <Link 
               href="/courses" 
+              onClick={handleNavClick}
               className={`transition-colors ${isActive("/courses") ? "text-primary" : "text-foreground hover:text-primary"}`}
               data-testid="navbar-courses-link"
             >
@@ -72,6 +85,7 @@ export default function Navbar() {
             </Link>
             <Link 
               href="/contact" 
+              onClick={handleNavClick}
               className={`transition-colors ${isActive("/contact") ? "text-primary" : "text-foreground hover:text-primary"}`}
               data-testid="navbar-contact-link"
             >
@@ -102,10 +116,10 @@ export default function Navbar() {
               </DropdownMenu>
             ) : (
               <Button asChild data-testid="navbar-login-btn">
-                <Link href="/auth">Login</Link>
+                <Link href="/auth" onClick={handleNavClick}>Login</Link>
               </Button>
             )}
-            
+
             {/* Mobile Menu Button */}
             <Button
               variant="ghost"
