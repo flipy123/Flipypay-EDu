@@ -378,8 +378,8 @@ async function initializeSampleCourses() {
         title: "Complete Python Programming",
         description: "Master Python from basics to advanced concepts. Perfect for beginners and experienced developers.",
         longDescription: "This comprehensive Python course covers everything from basic syntax to advanced topics like web development, data analysis, and machine learning. You'll build real-world projects and gain practical experience.",
-        price: 299900, // ₹2,999
-        originalPrice: 499900, // ₹4,999
+        price: 4500000, // ₹45,000
+        originalPrice: 6000000, // ₹60,000
         imageUrl: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200",
         category: "Programming",
         duration: "40 hours",
@@ -404,8 +404,8 @@ async function initializeSampleCourses() {
         title: "Data Science Mastery",
         description: "Learn data analysis, machine learning, and visualization with real-world projects.",
         longDescription: "Comprehensive data science course covering statistics, Python libraries, machine learning algorithms, and data visualization. Build a complete portfolio of data science projects.",
-        price: 399900, // ₹3,999
-        originalPrice: 599900, // ₹5,999
+        price: 7500000, // ₹75,000
+        originalPrice: 9500000, // ₹95,000
         imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200",
         category: "Data Science",
         duration: "60 hours",
@@ -430,8 +430,8 @@ async function initializeSampleCourses() {
         title: "AI & Machine Learning",
         description: "Build intelligent systems and understand the future of technology with AI/ML.",
         longDescription: "Advanced course in artificial intelligence and machine learning. Learn to build neural networks, deep learning models, and AI applications that solve real-world problems.",
-        price: 699900, // ₹6,999
-        originalPrice: 999900, // ₹9,999
+        price: 9500000, // ₹95,000
+        originalPrice: 12000000, // ₹1,20,000
         imageUrl: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200",
         category: "AI/ML",
         duration: "80 hours",
@@ -456,8 +456,8 @@ async function initializeSampleCourses() {
         title: "Full Stack Web Development",
         description: "Create modern web applications with HTML, CSS, JavaScript, and popular frameworks.",
         longDescription: "Complete full-stack development course covering frontend technologies, backend development, databases, and deployment. Build and deploy real-world web applications.",
-        price: 399900, // ₹3,999
-        originalPrice: 599900, // ₹5,999
+        price: 6500000, // ₹65,000
+        originalPrice: 8500000, // ₹85,000
         imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200",
         category: "Web Development",
         duration: "50 hours",
@@ -482,8 +482,8 @@ async function initializeSampleCourses() {
         title: "Digital Marketing Mastery",
         description: "Master SEO, social media marketing, and online advertising strategies.",
         longDescription: "Comprehensive digital marketing course covering all aspects of online marketing including SEO, social media, content marketing, and paid advertising strategies.",
-        price: 249900, // ₹2,499
-        originalPrice: 399900, // ₹3,999
+        price: 3500000, // ₹35,000
+        originalPrice: 5000000, // ₹50,000
         imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200",
         category: "Marketing",
         duration: "30 hours",
@@ -508,8 +508,8 @@ async function initializeSampleCourses() {
         title: "Financial Analysis & Trading",
         description: "Learn investment strategies, financial modeling, and market analysis techniques.",
         longDescription: "Professional course in financial analysis covering fundamental and technical analysis, portfolio management, risk assessment, and trading strategies for Indian and global markets.",
-        price: 349900, // ₹3,499
-        originalPrice: 499900, // ₹4,999
+        price: 5500000, // ₹55,000
+        originalPrice: 7000000, // ₹70,000
         imageUrl: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200",
         category: "Finance",
         duration: "45 hours",
@@ -534,8 +534,8 @@ async function initializeSampleCourses() {
         title: "Mobile App Development",
         description: "Build native and cross-platform mobile applications for iOS and Android.",
         longDescription: "Complete mobile app development course covering React Native, Flutter, and native development. Learn to build, test, and deploy mobile applications for both iOS and Android platforms.",
-        price: 449900, // ₹4,499
-        originalPrice: 699900, // ₹6,999
+        price: 7000000, // ₹70,000
+        originalPrice: 9000000, // ₹90,000
         imageUrl: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200",
         category: "Mobile Development",
         duration: "55 hours",
@@ -560,8 +560,8 @@ async function initializeSampleCourses() {
         title: "Graphic Design Fundamentals",
         description: "Master visual communication with industry-standard design tools and techniques.",
         longDescription: "Professional graphic design course covering design principles, color theory, typography, and hands-on experience with Adobe Creative Suite and other design tools.",
-        price: 279900, // ₹2,799
-        originalPrice: 429900, // ₹4,299
+        price: 4000000, // ₹40,000
+        originalPrice: 5500000, // ₹55,000
         imageUrl: "https://images.unsplash.com/photo-1586717799252-bd134ad00e26?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200",
         category: "Design",
         duration: "35 hours",
@@ -580,6 +580,136 @@ async function initializeSampleCourses() {
           "Basic computer skills",
           "Creative mindset",
           "Computer with graphics capability"
+        ]
+      },
+      {
+        title: "DevOps & Cloud Engineering",
+        description: "Master cloud platforms, containerization, and deployment automation with modern DevOps practices.",
+        longDescription: "Complete DevOps course covering AWS/Azure, Docker, Kubernetes, CI/CD pipelines, infrastructure as code, and monitoring. Build scalable, secure, and automated deployment workflows.",
+        price: 8500000, // ₹85,000
+        originalPrice: 10000000, // ₹1,00,000
+        imageUrl: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200",
+        category: "DevOps",
+        duration: "70 hours",
+        lessonsCount: 200,
+        studentsCount: 7850,
+        rating: 48, // 4.8
+        whatYouLearn: [
+          "AWS and Azure cloud platforms",
+          "Docker containerization and orchestration",
+          "Kubernetes cluster management",
+          "CI/CD pipeline automation",
+          "Infrastructure as Code (Terraform)",
+          "Monitoring and logging solutions"
+        ],
+        requirements: [
+          "Basic Linux command line knowledge",
+          "Understanding of software development",
+          "Computer with virtualization support"
+        ]
+      },
+      {
+        title: "Cybersecurity & Ethical Hacking",
+        description: "Learn network security, penetration testing, and ethical hacking to protect digital assets.",
+        longDescription: "Comprehensive cybersecurity course covering network security, vulnerability assessment, penetration testing, and incident response. Master the skills to protect organizations from cyber threats.",
+        price: 9000000, // ₹90,000
+        originalPrice: 11000000, // ₹1,10,000
+        imageUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200",
+        category: "Cybersecurity",
+        duration: "60 hours",
+        lessonsCount: 180,
+        studentsCount: 5920,
+        rating: 47, // 4.7
+        whatYouLearn: [
+          "Network security fundamentals",
+          "Penetration testing methodologies",
+          "Vulnerability assessment tools",
+          "Incident response procedures",
+          "Digital forensics techniques",
+          "Security compliance frameworks"
+        ],
+        requirements: [
+          "Basic networking concepts",
+          "Understanding of operating systems",
+          "Strong analytical mindset"
+        ]
+      },
+      {
+        title: "Blockchain Development & Web3",
+        description: "Build decentralized applications and smart contracts on Ethereum and other blockchain platforms.",
+        longDescription: "Advanced blockchain development course covering smart contract development, DeFi protocols, NFT marketplaces, and Web3 integration. Learn to build the future of decentralized applications.",
+        price: 9500000, // ₹95,000
+        originalPrice: 12000000, // ₹1,20,000
+        imageUrl: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200",
+        category: "Blockchain",
+        duration: "65 hours",
+        lessonsCount: 190,
+        studentsCount: 4680,
+        rating: 46, // 4.6
+        whatYouLearn: [
+          "Solidity smart contract development",
+          "Ethereum blockchain fundamentals",
+          "DeFi protocol integration",
+          "NFT marketplace development",
+          "Web3.js and ethers.js libraries",
+          "Blockchain deployment strategies"
+        ],
+        requirements: [
+          "JavaScript programming experience",
+          "Understanding of blockchain concepts",
+          "Cryptocurrency familiarity"
+        ]
+      },
+      {
+        title: "Business Analytics & Intelligence",
+        description: "Transform business data into actionable insights using advanced analytics and visualization tools.",
+        longDescription: "Professional business analytics course covering data warehousing, business intelligence tools, advanced Excel, Power BI, Tableau, and strategic decision-making frameworks.",
+        price: 6000000, // ₹60,000
+        originalPrice: 8000000, // ₹80,000
+        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200",
+        category: "Business Analytics",
+        duration: "45 hours",
+        lessonsCount: 140,
+        studentsCount: 12450,
+        rating: 48, // 4.8
+        whatYouLearn: [
+          "Advanced Excel and data modeling",
+          "Power BI dashboard creation",
+          "Tableau data visualization",
+          "SQL for business analytics",
+          "KPI development and tracking",
+          "Predictive analytics fundamentals"
+        ],
+        requirements: [
+          "Basic Excel knowledge",
+          "Business acumen",
+          "Statistical thinking"
+        ]
+      },
+      {
+        title: "Product Management Mastery",
+        description: "Master product strategy, user research, and agile development to lead successful product teams.",
+        longDescription: "Complete product management course covering product strategy, market research, user experience design, agile methodologies, and product launch strategies for digital products.",
+        price: 7500000, // ₹75,000
+        originalPrice: 9500000, // ₹95,000
+        imageUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200",
+        category: "Product Management",
+        duration: "50 hours",
+        lessonsCount: 150,
+        studentsCount: 8930,
+        rating: 47, // 4.7
+        whatYouLearn: [
+          "Product strategy and roadmapping",
+          "User research and persona development",
+          "Agile and Scrum methodologies",
+          "Data-driven decision making",
+          "Product launch and go-to-market",
+          "Stakeholder management"
+        ],
+        requirements: [
+          "Basic business understanding",
+          "Analytical thinking skills",
+          "Communication skills"
         ]
       }
     ];
