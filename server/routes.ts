@@ -369,11 +369,77 @@ export async function registerRoutes(app: Express): Promise<Server> {
 async function initializeSampleCourses() {
   try {
     const existingCourses = await storage.getAllCourses();
-    if (existingCourses.length > 0) {
-      return; // Courses already exist
+    
+    // If no courses exist, create all sample courses
+    if (existingCourses.length === 0) {
+      console.log("No courses found, initializing sample courses...");
+      await createAllSampleCourses();
+      return;
     }
+    
+    // If courses exist but count doesn't match, update the course catalog
+    if (existingCourses.length !== 13) {
+      console.log(`Found ${existingCourses.length} courses, expected 13. Updating course catalog...`);
+      await updateCourseCatalog();
+      return;
+    }
+    
+    // Check if any prices need updating
+    const sampleCourses = getSampleCoursesData();
+    let needsUpdate = false;
+    
+    for (const sampleCourse of sampleCourses) {
+      const existingCourse = existingCourses.find(c => c.title === sampleCourse.title);
+      if (existingCourse && existingCourse.price !== sampleCourse.price) {
+        needsUpdate = true;
+        break;
+      }
+    }
+    
+    if (needsUpdate) {
+      console.log("Course prices need updating, refreshing course data...");
+      await updateCourseCatalog();
+    }
+  } catch (error) {
+    console.error("Error initializing sample courses:", error);
+  }
+}
 
-    const sampleCourses = [
+async function createAllSampleCourses() {
+  const sampleCourses = getSampleCoursesData();
+  for (const courseData of sampleCourses) {
+    await storage.createCourse(courseData);
+  }
+  console.log("Sample courses initialized successfully");
+}
+
+async function updateCourseCatalog() {
+  try {
+    const existingCourses = await storage.getAllCourses();
+    const sampleCourses = getSampleCoursesData();
+    
+    // Update existing courses or create new ones
+    for (const sampleCourse of sampleCourses) {
+      const existingCourse = existingCourses.find(c => c.title === sampleCourse.title);
+      
+      if (existingCourse) {
+        // Update existing course with new data
+        await storage.updateCourse(existingCourse.id, sampleCourse);
+      } else {
+        // Create new course if it doesn't exist
+        await storage.createCourse(sampleCourse);
+      }
+    }
+    
+    console.log("Course catalog updated successfully");
+  } catch (error) {
+    console.error("Error updating course catalog:", error);
+  }
+}
+
+function getSampleCoursesData() {
+  return [
+
       {
         title: "Complete Python Programming",
         description: "Master Python from basics to advanced concepts. Perfect for beginners and experienced developers.",
@@ -712,14 +778,5 @@ async function initializeSampleCourses() {
           "Communication skills"
         ]
       }
-    ];
-
-    for (const courseData of sampleCourses) {
-      await storage.createCourse(courseData);
-    }
-
-    console.log("Sample courses initialized successfully");
-  } catch (error) {
-    console.error("Error initializing sample courses:", error);
-  }
+  ];
 }
