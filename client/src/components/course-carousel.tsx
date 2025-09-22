@@ -13,6 +13,7 @@ interface CourseCarouselProps {
 
 export default function CourseCarousel({ courses }: CourseCarouselProps) {
   const carouselRef = useRef<HTMLDivElement>(null);
+  const pauseAutoScrollRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     const carousel = carouselRef.current;
@@ -20,10 +21,12 @@ export default function CourseCarousel({ courses }: CourseCarouselProps) {
 
     let animationId: number;
     let isHovered = false;
+    let manualScrollPaused = false;
+    let pauseTimeout: ReturnType<typeof setTimeout> | null = null;
 
     const startAutoScroll = () => {
       const scroll = () => {
-        if (!isHovered && carousel) {
+        if (!isHovered && !manualScrollPaused && carousel) {
           carousel.scrollBy({ left: 1, behavior: 'auto' });
           
           // Reset to beginning if we've scrolled to the end
@@ -40,32 +43,52 @@ export default function CourseCarousel({ courses }: CourseCarouselProps) {
       cancelAnimationFrame(animationId);
     };
 
-    // Mouse events
-    carousel.addEventListener('mouseenter', () => {
-      isHovered = true;
-    });
+    const pauseAutoScroll = () => {
+      manualScrollPaused = true;
+      if (pauseTimeout) clearTimeout(pauseTimeout);
+      pauseTimeout = setTimeout(() => {
+        manualScrollPaused = false;
+      }, 1000); // Pause for 1 second after manual scroll
+    };
 
-    carousel.addEventListener('mouseleave', () => {
+    const handleMouseEnter = () => {
+      isHovered = true;
+    };
+
+    const handleMouseLeave = () => {
       isHovered = false;
-    });
+    };
+
+    // Mouse events
+    carousel.addEventListener('mouseenter', handleMouseEnter);
+    carousel.addEventListener('mouseleave', handleMouseLeave);
+
+    // Store the pause function in ref
+    pauseAutoScrollRef.current = pauseAutoScroll;
 
     // Start auto-scroll
     startAutoScroll();
 
     return () => {
       stopAutoScroll();
+      carousel.removeEventListener('mouseenter', handleMouseEnter);
+      carousel.removeEventListener('mouseleave', handleMouseLeave);
+      if (pauseTimeout) clearTimeout(pauseTimeout);
+      pauseAutoScrollRef.current = null;
     };
   }, [courses]);
 
   const scrollLeft = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: -320, behavior: 'smooth' });
+      pauseAutoScrollRef.current?.();
+      carouselRef.current.scrollBy({ left: -256, behavior: 'smooth' }); // 240px card + 16px gap
     }
   };
 
   const scrollRight = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: 320, behavior: 'smooth' });
+      pauseAutoScrollRef.current?.();
+      carouselRef.current.scrollBy({ left: 256, behavior: 'smooth' }); // 240px card + 16px gap
     }
   };
 
@@ -98,14 +121,14 @@ export default function CourseCarousel({ courses }: CourseCarouselProps) {
       {/* Carousel Container */}
       <div
         ref={carouselRef}
-        className="flex gap-6 overflow-x-hidden scroll-smooth"
+        className="flex gap-4 overflow-x-hidden scroll-smooth"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         data-testid="carousel-container"
       >
         {duplicatedCourses.map((course, index) => (
           <Card 
             key={`${course.id}-${index}`} 
-            className="group min-w-[320px] flex-shrink-0 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+            className="group min-w-[240px] max-w-[240px] w-[240px] flex-shrink-0 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
             data-testid={`carousel-course-card-${index}`}
           >
             <CardContent className="p-0">
@@ -123,15 +146,15 @@ export default function CourseCarousel({ courses }: CourseCarouselProps) {
                 </div>
               </div>
               
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 line-clamp-2" data-testid={`carousel-course-title-${index}`}>
+              <div className="p-4">
+                <h3 className="text-lg font-semibold mb-2 line-clamp-2" data-testid={`carousel-course-title-${index}`}>
                   {course.title}
                 </h3>
-                <p className="text-muted-foreground mb-4 text-sm line-clamp-3" data-testid={`carousel-course-description-${index}`}>
+                <p className="text-muted-foreground mb-3 text-xs line-clamp-2" data-testid={`carousel-course-description-${index}`}>
                   {course.description}
                 </p>
                 
-                <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
                   <div className="flex items-center gap-1" data-testid={`carousel-course-rating-${index}`}>
                     <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                     <span>{((course.rating || 0) / 10).toFixed(1)}</span>
@@ -146,9 +169,9 @@ export default function CourseCarousel({ courses }: CourseCarouselProps) {
                   </div>
                 </div>
                 
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center justify-between mb-4">
                   <div className="space-y-1">
-                    <div className="text-2xl font-bold text-primary" data-testid={`carousel-course-price-${index}`}>
+                    <div className="text-xl font-bold text-primary" data-testid={`carousel-course-price-${index}`}>
                       {formatCurrency(course.price / 100)}
                     </div>
                     {course.originalPrice && course.originalPrice > course.price && (
